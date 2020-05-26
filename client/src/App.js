@@ -9,6 +9,8 @@ import Signup from './components/screens/Signup';
 import CreatePost from './components/screens/CreatePost';
 import UserProfile from './components/screens/UserProfile';
 import SubscribedUserPosts from './components/screens/SubscribeUserPosts';
+import Reset from './components/screens/Reset';
+import NewPassword from './components/screens/NewPassword';
 import {reducer, initialState} from './reducers/userReducer'
 
 export const UserContext = createContext()
@@ -20,9 +22,10 @@ const Routing = () => {
     const user = JSON.parse(localStorage.getItem("user"))
     if (user) {
       dispatch({type:"USER",payload:user})
-      // history.push('/')
     } else {
-      history.push('/signin')
+      if (!history.location.pathname.startsWith('/reset')) {
+        history.push('/signin') 
+      }
     }
   }, [])
   return (
@@ -47,6 +50,12 @@ const Routing = () => {
       </Route>
       <Route path="/myfollowingpost">
         <SubscribedUserPosts />
+      </Route>
+      <Route exact path="/reset">
+        <Reset />
+      </Route>
+      <Route path="/reset/:token">
+        <NewPassword />
       </Route>
     </Switch>
   );

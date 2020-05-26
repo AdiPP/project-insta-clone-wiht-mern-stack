@@ -14,6 +14,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  resetToken: String,
+  expireToken: Date,
   pic: {
     type: String,
     default: "https://quantum-inti.co.id/home/wp-content/uploads/2020/04/No-Image-Available.png"

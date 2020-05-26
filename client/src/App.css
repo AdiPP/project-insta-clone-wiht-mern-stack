@@ -50,3 +50,7 @@ a {
 .material-icons:hover {
   cursor: pointer;
 }
+
+.collection li {
+  float: none;
+}
